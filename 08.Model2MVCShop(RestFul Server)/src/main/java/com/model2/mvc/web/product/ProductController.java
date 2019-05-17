@@ -40,9 +40,13 @@ public class ProductController {
 	int pageSize;
 	
 	@RequestMapping( value="addProduct", method=RequestMethod.POST)
-	public String addProduct(@ModelAttribute("pvo") Product product) throws Exception {
+	public String addProduct(@ModelAttribute("pvo") Product product,
+							@RequestParam("manuDate") String manuDate) throws Exception {
 		
 		System.out.println("/addProduct");
+		
+		manuDate = manuDate.replaceAll("-", "");
+		product.setManuDate(manuDate);
 		
 		productService.addProduct(product);
 		

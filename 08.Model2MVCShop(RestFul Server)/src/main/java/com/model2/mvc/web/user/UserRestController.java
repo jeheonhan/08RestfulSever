@@ -62,4 +62,18 @@ public class UserRestController {
 		
 		return dbUser;
 	}
+	
+	@RequestMapping(value="json/addUser", method=RequestMethod.POST)
+	public void addUser(@RequestBody User user) throws Exception{
+		
+		System.out.println("user/json/addUser : POST");
+		System.out.println("바인딩 된 domain : "+user);
+		
+		String userId = user.getUserId();
+		
+		userService.addUser(user);
+		
+		System.out.println("addUser 확인 : "+userService.getUser(userId));
+		
+	}
 }
